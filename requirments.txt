@@ -1,0 +1,8 @@
+torch>=1.11.0
+torchvision>=0.12
+numpy
+opencv-python
+matplotlib
+kornia>=0.6.12
+opencv-contrib-python-headless==4.10.0.84
+tqdm
