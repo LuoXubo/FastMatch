@@ -364,6 +364,10 @@ class LightGlue(nn.Module):
             "input_dim": 128,
             "add_scale_ori": True,
         },
+        "xfeat": {
+            "weights": "xfeat_lightglue",
+            "input_dim": 64,
+        },
     }
 
     def __init__(self, features="superpoint", **conf) -> None:
@@ -408,7 +412,6 @@ class LightGlue(nn.Module):
         state_dict = None
         if features is not None:
             fname = f"{conf.weights}_{self.version.replace('.', '-')}.pth"
-            # state_dict = torch.load('/home/wuaodi/.cache/hub/checkpoints/' + fname)
             state_dict = torch.hub.load_state_dict_from_url(
                 self.url.format(self.version, features), file_name=fname
             )
