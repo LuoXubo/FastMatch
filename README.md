@@ -44,6 +44,8 @@ See `demo.ipynb` for a quick start.
 
 ### 4.1 Time Comparison
 
+Test image: 800x600
+
 | Method                   | Feature Extraction | Matching | Total Time |
 | ------------------------ | ------------------ | -------- | ---------- |
 | SP + LG                  | 0.06s              | 0.02s    | 0.08s      |
