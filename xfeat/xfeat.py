@@ -10,6 +10,7 @@ import torch
 import torch.nn.functional as F
 
 import tqdm
+import time
 
 # from modules.model import *
 # from modules.interpolator import InterpolateSparse2d
@@ -136,10 +137,18 @@ class XFeat(nn.Module):
 		img1 = self.parse_input(img1)
 		img2 = self.parse_input(img2)
 
+		tik = time.time()
 		out1 = self.detectAndCompute(img1, top_k=top_k)[0]
 		out2 = self.detectAndCompute(img2, top_k=top_k)[0]
+		tok = time.time()
 
+		print('Detection time: ', tok-tik)
+
+		tik = time.time()
 		idxs0, idxs1 = self.match(out1['descriptors'], out2['descriptors'], min_cossim=min_cossim )
+		tok = time.time()
+
+		print('Matching time: ', tok-tik)
 
 		return out1['keypoints'][idxs0].cpu().numpy(), out2['keypoints'][idxs1].cpu().numpy()
 
@@ -159,10 +168,14 @@ class XFeat(nn.Module):
 		im_set2 = self.parse_input(im_set2)
 
 		#Compute coarse feats
+		tik = time.time()
 		out1 = self.detectAndComputeDense(im_set1, top_k=top_k)
 		out2 = self.detectAndComputeDense(im_set2, top_k=top_k)
+		tok = time.time()
+		print('Detection time: ', tok-tik)
 
 		#Match batches of pairs
+		tik = time.time()
 		idxs_list = self.batch_match(out1['descriptors'], out2['descriptors'] )
 		B = len(im_set1)
 
@@ -171,7 +184,9 @@ class XFeat(nn.Module):
 		matches = []
 		for b in range(B):
 			matches.append(self.refine_matches(out1, out2, matches = idxs_list, batch_idx=b))
-
+		tok = time.time()
+		print('Matching time: ', tok-tik)
+  
 		return matches if B > 1 else (matches[0][:, :2].cpu().numpy(), matches[0][:, 2:].cpu().numpy())
 
 	def preprocess_tensor(self, x):
