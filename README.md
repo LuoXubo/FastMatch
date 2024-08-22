@@ -51,6 +51,7 @@ See `demo.ipynb` for a quick start.
 | Method                   | Feature Extraction | Matching | Total Time |
 | ------------------------ | ------------------ | -------- | ---------- |
 | SP + LG                  | 0.06s              | 0.02s    | 0.08s      |
+| Efficient LoFTR          | -                  | -        | 0.063s     |
 | XFeat + mnn (sparse)     | 0.016s             | 0.0007s  | 0.0167s    |
 | XFeat + mnn (semi-dense) | 0.17s              | 0.007    | 0.177s     |
 

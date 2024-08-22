@@ -42,6 +42,7 @@ if __name__ == '__main__':
     
     # --- Load the reference image and target video --- #
     ref = cv2.imread(args.ref)
+    ref = cv2.cvtColor(ref, cv2.COLOR_BGR2RGB)
     tgt = cv2.VideoCapture(args.tgt)
     
     
@@ -64,6 +65,8 @@ if __name__ == '__main__':
             
             if not ret:
                 break
+            
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             
             if method == 'xfeat+mnn':
                 mkpts_0, mkpts_1, time_det, time_mat = xfeat.match_xfeat(ref, frame, top_k = 4096)
