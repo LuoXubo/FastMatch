@@ -13,6 +13,7 @@ How fast can image matching be?
   - [3. Usage](#3-usage)
   - [4. Results](#4-results)
     - [4.1 Time Comparison](#41-time-comparison)
+    - [4.2 Video Matching](#42-video-matching)
   - [5. Thanks To](#5-thanks-to)
   - [6. License](#6-license)
 
@@ -44,13 +45,29 @@ See `demo.ipynb` for a quick start.
 
 ### 4.1 Time Comparison
 
-Test image: 800x600
+- Test device: Ubuntu 20.04, RTX 3090 Ti
+- Test image size: 800x600
 
 | Method                   | Feature Extraction | Matching | Total Time |
 | ------------------------ | ------------------ | -------- | ---------- |
 | SP + LG                  | 0.06s              | 0.02s    | 0.08s      |
 | XFeat + mnn (sparse)     | 0.016s             | 0.0007s  | 0.0167s    |
 | XFeat + mnn (semi-dense) | 0.17s              | 0.007    | 0.177s     |
+
+### 4.2 Video Matching
+
+- Test device: Ubuntu 20.04, RTX 3090 Ti
+- Test video size: 1280x720, 30fps, shot by iPhone 13
+- Test video length: 12s
+
+![video](assets/xfeat+mnn.gif)
+![video](assets/sp+lg.gif)
+
+**Usage:**
+
+```bash
+python video_matching.py --ref=assets/groot/groot.jpg --tgt=assets/groot/groot.mp4 --method=sp+lg --save_path=assets/groot/groot_sp+lg.mp4
+```
 
 ## 5. Thanks To
 
