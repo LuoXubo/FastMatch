@@ -61,6 +61,7 @@ See `demo.ipynb` for a quick start.
 - Test video length: 12s
 
 ![video](assets/xfeat+mnn.gif)
+
 ![video](assets/sp+lg.gif)
 
 **Usage:**
