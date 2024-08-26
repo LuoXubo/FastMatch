@@ -106,3 +106,39 @@ def sp_lg(sp, lg, ref, tgt):
         ref = cv2.cvtColor(np.uint8(ref*255), cv2.COLOR_RGB2BGR)
     
     return mkpts_0, mkpts_1, time_det, time_mat
+
+def eloftr(model, ref, tgt):
+    """
+    Function to perform LoFTR pipeline.
+    
+    Args:
+        model: LoFTR model
+        ref: reference image
+        tgt: target image
+    
+    Returns:
+        kpts0: keypoints of reference image
+        kpts1: keypoints of target image
+        time_det: time taken for detection
+        time_mat: time taken for matching
+    """
+    
+    ref = cv2.resize(ref, (ref.shape[1]//32*32, ref.shape[0]//32*32))
+    tgt = cv2.resize(tgt, (tgt.shape[1]//32*32, tgt.shape[0]//32*32))
+    
+    ref = torch.from_numpy(ref)[None][None].cuda()/255.
+    tgt = torch.from_numpy(tgt)[None][None].cuda()/255.
+    
+    batch = {'image0': ref, 'image1': tgt}
+    
+    tik = time.time()
+    with torch.no_grad():
+        model(batch)
+    tok = time.time()
+    time_total = tok - tik
+    
+    mkpts0 = batch['mkpts0_f'].cpu().numpy()
+    mkpts1 = batch['mkpts1_f'].cpu().numpy()
+    mconf = batch['mconf'].cpu().numpy()
+    
+    return mkpts0, mkpts1, 0, time_total
