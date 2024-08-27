@@ -123,6 +123,9 @@ def eloftr(model, ref, tgt):
         time_mat: time taken for matching
     """
     
+    ref = cv2.cvtColor(ref, cv2.COLOR_RGB2GRAY)
+    tgt = cv2.cvtColor(tgt, cv2.COLOR_RGB2GRAY)
+    
     ref = cv2.resize(ref, (ref.shape[1]//32*32, ref.shape[0]//32*32))
     tgt = cv2.resize(tgt, (tgt.shape[1]//32*32, tgt.shape[0]//32*32))
     

@@ -61,9 +61,17 @@ See `demo.ipynb` for a quick start.
 - Test video size: 1280x720, 30fps, shot by iPhone 13
 - Test video length: 12s
 
+XFeat + mnn
+
 ![video](assets/xfeat+mnn.gif)
 
+SuperPoint + LightGlue
+
 ![video](assets/sp+lg.gif)
+
+Efficient LoFTR
+
+![video](assets/eloftr.gif)
 
 **Usage:**
 
