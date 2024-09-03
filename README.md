@@ -55,6 +55,8 @@ See `demo.ipynb` for a quick start.
 | XFeat + mnn (sparse)     | 0.016s             | 0.0007s  | 0.0167s    |
 | XFeat + mnn (semi-dense) | 0.170s             | 0.007    | 0.177s     |
 
+TODO: XFeat + LightGlue
+
 ### 4.2 Video Matching
 
 - Test device: Ubuntu 20.04, RTX 3090 Ti
