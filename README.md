@@ -77,6 +77,7 @@ Efficient LoFTR
 ![video](assets/eloftr.gif)
 
 XFeat + LighterGlue
+![video](assets/xfeat+lg.gif)
 
 **Usage:**
 
