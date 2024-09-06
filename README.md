@@ -50,13 +50,13 @@ See `demo.ipynb` for a quick start.
 
 | Method                   | Feature Extraction | Matching | Total Time |
 | ------------------------ | ------------------ | -------- | ---------- |
-| SP + LG                  | 0.060s             | 0.020s   | 0.080s     |
-| Efficient LoFTR          | -                  | -        | 0.063s     |
+| SP + LG                  | 0.060s             | 0.020s   | 0.0800s    |
+| Efficient LoFTR          | -                  | -        | 0.0630s    |
 | XFeat + mnn (sparse)     | 0.016s             | 0.0007s  | 0.0167s    |
-| XFeat + mnn (semi-dense) | 0.170s             | 0.007    | 0.177s     |
-| XFeat + LightGlue        | -                  | -        | -          |
+| XFeat + mnn (semi-dense) | 0.170s             | 0.007s   | 0.1770s    |
+| XFeat + LightGlue        | 0.024s             | 0.0202s  | 0.0442s    |
 
-TODO: XFeat + LightGlue
+**Notice**: These methods are tested in a jupyter notebook, so the actual runing speed may be faster than the results.
 
 ### 4.2 Video Matching
 
@@ -75,6 +75,8 @@ SuperPoint + LightGlue
 Efficient LoFTR
 
 ![video](assets/eloftr.gif)
+
+XFeat + LighterGlue
 
 **Usage:**
 

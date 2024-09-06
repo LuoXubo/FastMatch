@@ -320,6 +320,22 @@ class XFeat(nn.Module):
 			idx1 = match12[mutual]
 
 		return idx0, idx1
+	
+	@torch.inference_mode()
+	def detect_match_lighterglue(self, im1, im2):
+		tik = time.time()
+		output0 = self.detectAndCompute(im1, top_k = 4096)[0]
+		output1 = self.detectAndCompute(im2, top_k = 4096)[0]
+		tok = time.time()
+		det_time = tok - tik
+		tik = time.time()
+		output0.update({'image_size': (im1.shape[1], im1.shape[0])})
+		output1.update({'image_size': (im2.shape[1], im2.shape[0])})
+		mkpts_0, mkpts_1 = self.match_lighterglue(output0, output1)
+		tok = time.time()
+		match_time = tok - tik
+
+		return mkpts_0, mkpts_1, det_time, match_time
 
 	@torch.inference_mode()
 	def match_lighterglue(self, d0, d1):
