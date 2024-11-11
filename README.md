@@ -58,6 +58,15 @@ See `demo.ipynb` for a quick start.
 
 **Notice**: These methods are tested in a jupyter notebook, so the actual runing speed may be faster than the results.
 
+**Test on Orin Nano:**
+- Test device: Nvidia Jetson Orin Nano
+- Test image size: 4000x4000
+
+| Method                   | Feature Extraction | Matching | Total Time |
+| ------------------------ | ------------------ | -------- | ---------- |
+| XFeat + mnn (sparse)     | 12.146s             | 0.025s  | 12.171s    |
+
+
 ### 4.2 Video Matching
 
 - Test device: Ubuntu 20.04, RTX 3090 Ti
@@ -77,6 +86,7 @@ Efficient LoFTR
 ![video](assets/eloftr.gif)
 
 XFeat + LighterGlue
+
 ![video](assets/xfeat+lg.gif)
 
 **Usage:**
